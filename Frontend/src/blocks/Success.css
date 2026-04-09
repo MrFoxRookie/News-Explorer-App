@@ -1,0 +1,21 @@
+.success-message {
+  width: 100%;
+  max-width: 430px;
+  height: 182px;
+  margin: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  padding: 36px;
+  box-sizing: border-box;
+}
+
+.success-message__title {
+  font-size: 24px;
+  margin: 0 0 14px;
+}
+
+.success-message__signin {
+  color: #2f71e5;
+  font-size: 18px;
+}

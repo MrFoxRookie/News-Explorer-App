@@ -1,0 +1,19 @@
+.saved-news {
+  padding-left: 104px;
+  font-family: "Roboto";
+}
+
+.saved-news__header {
+  font-size: 18px;
+  color: #1a1b2280;
+  font-weight: 400;
+}
+
+.saved-news__title {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.saved-news__description {
+  font-weight: 400;
+}

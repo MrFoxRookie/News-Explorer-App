@@ -1,0 +1,11 @@
+.app__background {
+  background-image: url("../images/app__background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.app__background_white {
+  background-image: none;
+  background-color: #ffffff;
+}

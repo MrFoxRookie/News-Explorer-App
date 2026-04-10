@@ -5,6 +5,15 @@ import { validateSignup, validateSignin } from "./schemas/users.js";
 const processRequest = (req, res) => {
   const { method, url } = req;
 
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (method === "OPTIONS") {
+    res.writeHead(200);
+    return res.end();
+  }
+
   switch (method) {
     case "POST":
       switch (url) {

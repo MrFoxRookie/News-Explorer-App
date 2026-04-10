@@ -19,10 +19,11 @@ function Auth({ isOpen }) {
       {mode === "signup" && (
         <SignUp
           onSignInClick={() => setMode("signin")}
-          onSignUpSubmit={(e) => {
-            e.preventDefault();
-            setMode("success");
-          }}
+          onSignUpSuccess={() => setMode("success")}
+          // onSignUpSubmit={(e) => {
+          //   e.preventDefault();
+          //   setMode("success");
+          // }}
         />
       )}
 

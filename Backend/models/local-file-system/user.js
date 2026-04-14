@@ -6,7 +6,7 @@ import { readJSON } from "../../utils.js";
 
 import fs from "node:fs/promises"; //Para sobrescribir la base local que se tiene por el momento. Se tiene que agregar /promises ya que se estan usando promises
 
-// const users = readJSON("./users.json"); // No se usa: ahora se maneja el JSON con fs/promises para persistencia
+const users = readJSON("./users.json"); // No se usa: ahora se maneja el JSON con fs/promises para persistencia
 
 export class UserModel {
   static async signup({ input }) {
@@ -35,5 +35,20 @@ export class UserModel {
     await fs.writeFile("./users.json", JSON.stringify(users, null, 2));
 
     return newUser;
+  }
+
+  static async signin({ input }) {
+    const pendingUser = input;
+
+    const userExists = users.some(
+      (user) =>
+        user.email === pendingUser.email &&
+        user.password === pendingUser.password,
+    );
+    if (!userExists) {
+      throw new Error("Email y/o contraseña incorrectos");
+    }
+
+    return pendingUser;
   }
 }

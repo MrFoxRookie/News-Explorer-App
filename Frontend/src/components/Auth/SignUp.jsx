@@ -14,7 +14,7 @@ function SignUp({ onSignInClick, onSignUpSuccess }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:1234/signup", {
+    fetch("http://localhost:1234/users/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 ###Iniciar sesión 
-POST http://localhost:1234/signin
+POST http://localhost:1234/users/signin
 Content-Type: application/json
 
 {

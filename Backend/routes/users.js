@@ -6,3 +6,5 @@ export const usersRouter = Router();
 
 usersRouter.post("/signup", UserController.signup);
 // usersRouter.post("/", UserController.signin);
+
+usersRouter.post("/signin", UserController.signin);

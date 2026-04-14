@@ -1,11 +1,11 @@
 ###Registro de usuario nuevo
-POST http://localhost:1234/signup
+POST http://localhost:1234/users/signup
 Content-Type: application/json
 
 {
-  "email": "zahid233u1@gmail.com",
+  "email": "zahid233u12@gmail.com",
   "password": "1234",
-  "username": "zahidu2"
+  "username": "zahidujsanksajsadjsalkndsa2"
 }
 
 ###Iniciar sesión 

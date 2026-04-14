@@ -10,4 +10,10 @@ const signinSchema = z.object({
   password: z.string().min(1, "La contraseña es obligatoria"),
 });
 
-export { signupSchema as validateSignup, signinSchema as validateSignin };
+export function validateSignup(input) {
+  return signupSchema.safeParse(input);
+}
+
+export function validateSignin(input) {
+  return signinSchema.safeParse(input);
+}

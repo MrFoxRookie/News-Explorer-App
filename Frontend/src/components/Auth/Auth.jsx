@@ -3,7 +3,7 @@ import SignIn from "./Signin";
 import SignUp from "./Signup";
 import SuccessMessage from "./SuccessMessage";
 
-function Auth({ isOpen }) {
+function Auth({ isOpen, closeForm }) {
   const [mode, setMode] = useState("signin");
 
   useEffect(() => {
@@ -14,7 +14,9 @@ function Auth({ isOpen }) {
 
   return (
     <div className="auth">
-      {mode === "signin" && <SignIn onSignUpClick={() => setMode("signup")} />}
+      {mode === "signin" && (
+        <SignIn onSignUpClick={() => setMode("signup")} closeForm={closeForm} />
+      )}
 
       {mode === "signup" && (
         <SignUp

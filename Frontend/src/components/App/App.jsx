@@ -99,7 +99,7 @@ function App() {
       </div>
       <Footer></Footer>
       <PopupWithForm isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
-        <Auth isOpen={isPopupOpen} />
+        <Auth isOpen={isPopupOpen} closeForm={() => setIsPopupOpen(false)} />
       </PopupWithForm>
     </>
   );

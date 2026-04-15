@@ -20,8 +20,9 @@ export class UserController {
 
   static async signin(req, res) {
     try {
+      console.log("hola");
       const result = validateSignin(req.body);
-      if (!result) {
+      if (!result.success) {
         return res.status(400).json({ error: result.error.issues });
       }
 

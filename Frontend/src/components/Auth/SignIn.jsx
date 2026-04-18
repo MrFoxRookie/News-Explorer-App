@@ -21,7 +21,6 @@ function SignIn({ onSignUpClick, closeForm }) {
       .then((data) => {
         if (!data.error) {
           closeForm();
-          console.log(data);
         }
       })
       .catch((err) => console.log(err));

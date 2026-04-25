@@ -33,10 +33,46 @@ export class UserModel {
    VALUES (?, ?, ?)`,
         [email, hashedPassword, username],
       );
-      return result;
+      return {
+        user_id: result.insertId,
+        email,
+        username,
+      };
     } catch (error) {
-      console.error(error);
       throw new Error(error.message);
+    }
+  }
+
+  static async signin({ input }) {
+    try {
+      const { email, password } = input;
+
+      const [rows] = await pool.query(
+        `SELECT user_id, email, username, password
+       FROM users
+       WHERE email = ?`,
+        [email],
+      );
+
+      if (rows.length === 0) {
+        throw new Error("Email y/o contraseña incorrectos");
+      }
+
+      const user = rows[0];
+
+      const validPassword = await bcrypt.compare(password, user.password);
+
+      if (!validPassword) {
+        throw new Error("Email y/o contraseña incorrectos");
+      }
+
+      return {
+        user_id: user.user_id,
+        email: user.email,
+        username: user.username,
+      };
+    } catch (error) {
+      throw error;
     }
   }
 }

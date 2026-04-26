@@ -15,9 +15,9 @@ function Navigation({
 }) {
   const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    setCurrentUser("george");
-  }, []);
+  // useEffect(() => {
+  //   setCurrentUser("george");
+  // }, []);
 
   function handleLogoutClick() {
     handleLogout();

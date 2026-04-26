@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useEffect } from "react";
 
 function SignIn({ onSignUpClick, closeForm }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +25,9 @@ function SignIn({ onSignUpClick, closeForm }) {
       .then((data) => {
         if (!data.error) {
           closeForm();
+          localStorage.setItem("token", data.token);
+          setCurrentUser(data.authorizedUser.username);
+          console.log(data.authorizedUser.username);
         }
       })
       .catch((err) => console.log(err));

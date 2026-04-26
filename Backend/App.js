@@ -2,6 +2,8 @@ import express, { json } from "express";
 import { usersRouter } from "./routes/users.js";
 import { corsMiddleware } from "./middlewares/cors.js";
 import cors from "cors"; //Cors ya funciona, pero se podria mejorar.
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 app.use(json()); //json es un middleware de Express. Sirve para leer datos JSON que vienen en el body de una petición

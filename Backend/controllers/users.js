@@ -2,6 +2,8 @@ import { UserModel } from "../models/mysql/mysql.js";
 
 import { validateSignup, validateSignin } from "../schemas/users.js";
 
+import jwt from "jsonwebtoken";
+
 export class UserController {
   static async signup(req, res) {
     try {
@@ -27,9 +29,20 @@ export class UserController {
 
       const authorizedUser = await UserModel.signin({ input: result.data });
 
-      res.status(200).json(authorizedUser);
-      console.log("todo cool");
+      const token = jwt.sign(
+        { id: authorizedUser.user_id, email: authorizedUser.email },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "7d",
+        },
+      );
+      console.log(authorizedUser);
+
+      res.status(200).json({ token, authorizedUser });
+      console.log("signin completado");
     } catch (error) {
+      console.log(error);
+
       res.status(401).json({ error: error.message });
     }
   }

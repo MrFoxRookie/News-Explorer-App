@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
 
-function Header({ onSignInClick, isSavedNews, currentUser, handleLogout }) {
+function Header({ onSignInClick, isSavedNews, handleLogout }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function handleMenuToggle() {
@@ -48,7 +48,6 @@ function Header({ onSignInClick, isSavedNews, currentUser, handleLogout }) {
         <Navigation
           onSignInClick={onSignInClick}
           isSavedNews={isSavedNews}
-          currentUser={currentUser}
           handleLogout={handleLogout}
           isMenuOpen={isMenuOpen}
           handleMenuToggle={handleMenuToggle}

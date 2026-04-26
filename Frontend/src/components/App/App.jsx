@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { newsApi } from "../../utils/newsApi";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -17,7 +18,6 @@ function App() {
 
   const isSavedNews = location.pathname === "/saved-news";
 
-  //Datos simulados para el logged in
   const [currentUser, setCurrentUser] = useState(null);
 
   function handleLogout() {
@@ -62,45 +62,49 @@ function App() {
 
   return (
     <>
-      <div
-        className={`app__background ${isSavedNews ? "app__background_white" : ""}`}
-      >
-        <Header
-          onSignInClick={() => setIsPopupOpen(true)}
-          isSavedNews={isSavedNews}
-          currentUser={currentUser}
-          handleLogout={handleLogout}
-        ></Header>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Main
-                onSearch={handleSearch}
-                articles={articles}
-                isLoading={isLoading}
-                error={error}
-                hasSearched={hasSearched}
-                visibleCount={visibleCount}
-                setVisibleCount={setVisibleCount}
-                currentUser={currentUser}
-              />
-            }
-          />
-          <Route
-            path="/saved-news"
-            element={
-              <ProtectedRoute currentUser={currentUser}>
-                <SavedNews currentUser={currentUser} />{" "}
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </div>
-      <Footer></Footer>
-      <PopupWithForm isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
-        <Auth isOpen={isPopupOpen} closeForm={() => setIsPopupOpen(false)} />
-      </PopupWithForm>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <div
+          className={`app__background ${isSavedNews ? "app__background_white" : ""}`}
+        >
+          <Header
+            onSignInClick={() => setIsPopupOpen(true)}
+            isSavedNews={isSavedNews}
+            handleLogout={handleLogout}
+          ></Header>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  onSearch={handleSearch}
+                  articles={articles}
+                  isLoading={isLoading}
+                  error={error}
+                  hasSearched={hasSearched}
+                  visibleCount={visibleCount}
+                  setVisibleCount={setVisibleCount}
+                  currentUser={currentUser}
+                />
+              }
+            />
+            <Route
+              path="/saved-news"
+              element={
+                <ProtectedRoute currentUser={currentUser}>
+                  <SavedNews currentUser={currentUser} />{" "}
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </div>
+        <Footer></Footer>
+        <PopupWithForm
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+        >
+          <Auth isOpen={isPopupOpen} closeForm={() => setIsPopupOpen(false)} />
+        </PopupWithForm>
+      </CurrentUserContext.Provider>
     </>
   );
 }

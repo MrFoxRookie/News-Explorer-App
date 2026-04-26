@@ -2,15 +2,23 @@
 import logoutIconBlack from "../../images/navigation__logout-white.svg";
 import logoutIconWhite from "../../images/navigation__logout-black.svg";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useEffect } from "react";
 
 function Navigation({
   onSignInClick,
   isSavedNews,
-  currentUser,
   handleLogout,
   isMenuOpen,
   handleMenuToggle,
 }) {
+  const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    setCurrentUser("george");
+  }, []);
+
   function handleLogoutClick() {
     handleLogout();
     handleMenuToggle();
@@ -47,7 +55,7 @@ function Navigation({
       )}
       {currentUser ? (
         <div className="navigation__button" onClick={handleLogoutClick}>
-          <p className="navigation__logout">{currentUser.name.split(" ")[0]}</p>
+          <p className="navigation__logout">{currentUser}</p>
           <img
             src={isSavedNews ? logoutIconWhite : logoutIconBlack}
             alt="Logout"

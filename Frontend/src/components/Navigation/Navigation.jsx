@@ -18,6 +18,8 @@ function Navigation({
   function handleLogoutClick() {
     handleLogout();
     handleMenuToggle();
+    setCurrentUser(null);
+    localStorage.removeItem("token");
   }
 
   return (

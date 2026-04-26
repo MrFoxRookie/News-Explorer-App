@@ -75,4 +75,12 @@ export class UserModel {
       throw error;
     }
   }
+  static async getById(id) {
+    const [rows] = await pool.query(
+      "SELECT user_id, username, email FROM users WHERE user_id = ?",
+      [id],
+    );
+
+    return rows[0];
+  }
 }

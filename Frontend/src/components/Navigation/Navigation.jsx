@@ -15,10 +15,6 @@ function Navigation({
 }) {
   const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
 
-  // useEffect(() => {
-  //   setCurrentUser("george");
-  // }, []);
-
   function handleLogoutClick() {
     handleLogout();
     handleMenuToggle();
@@ -55,7 +51,7 @@ function Navigation({
       )}
       {currentUser ? (
         <div className="navigation__button" onClick={handleLogoutClick}>
-          <p className="navigation__logout">{currentUser}</p>
+          <p className="navigation__logout">{currentUser.username}</p>
           <img
             src={isSavedNews ? logoutIconWhite : logoutIconBlack}
             alt="Logout"

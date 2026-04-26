@@ -26,8 +26,7 @@ function SignIn({ onSignUpClick, closeForm }) {
         if (!data.error) {
           closeForm();
           localStorage.setItem("token", data.token);
-          setCurrentUser(data.authorizedUser.username);
-          console.log(data.authorizedUser.username);
+          setCurrentUser(data.authorizedUser);
         }
       })
       .catch((err) => console.log(err));

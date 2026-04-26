@@ -4,7 +4,7 @@ import SavedNews from "../SavedNews/SavedNews";
 import Footer from "../Footer/Footer";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import Auth from "../Auth/Auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -12,13 +12,38 @@ import { newsApi } from "../../utils/newsApi";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) return;
+
+    fetch("http://localhost:1234/users/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log("STATUS:", res.status);
+        if (!res.ok) throw new Error("Token inválido");
+        return res.json();
+      })
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => {
+        console.log("ERROR:", err);
+        localStorage.removeItem("token");
+        setCurrentUser(null);
+      });
+  }, []);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const location = useLocation();
 
   const isSavedNews = location.pathname === "/saved-news";
-
-  const [currentUser, setCurrentUser] = useState(null);
 
   function handleLogout() {
     setCurrentUser(null);

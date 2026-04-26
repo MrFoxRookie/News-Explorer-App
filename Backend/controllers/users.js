@@ -30,7 +30,11 @@ export class UserController {
       const authorizedUser = await UserModel.signin({ input: result.data });
 
       const token = jwt.sign(
-        { id: authorizedUser.user_id, email: authorizedUser.email },
+        {
+          id: authorizedUser.user_id,
+          email: authorizedUser.email,
+          username: authorizedUser.username,
+        },
         process.env.JWT_SECRET,
         {
           expiresIn: "7d",
@@ -44,6 +48,17 @@ export class UserController {
       console.log(error);
 
       res.status(401).json({ error: error.message });
+    }
+  }
+
+  static async getCurrentUser(req, res) {
+    try {
+      const user = await UserModel.getById(req.user.id);
+
+      res.json(user);
+    } catch (error) {
+      console.log("ERROR /me:", error);
+      res.status(500).json({ error: error.message });
     }
   }
 }

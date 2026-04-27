@@ -8,8 +8,9 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { newsApi } from "../../utils/newsApi";
+import { newsApi } from "../../utils/api/NewsApi.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import { checkToken } from "../../utils/api/auth.js";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -19,17 +20,9 @@ function App() {
 
     if (!token) return;
 
-    fetch("http://localhost:1234/users/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        console.log("STATUS:", res.status);
-        if (!res.ok) throw new Error("Token inválido");
-        return res.json();
-      })
+    checkToken(token)
       .then((data) => {
+        console.log("hola");
         setCurrentUser(data);
       })
       .catch((err) => {
@@ -116,7 +109,7 @@ function App() {
               path="/saved-news"
               element={
                 <ProtectedRoute currentUser={currentUser}>
-                  <SavedNews currentUser={currentUser} />{" "}
+                  <SavedNews />{" "}
                 </ProtectedRoute>
               }
             />

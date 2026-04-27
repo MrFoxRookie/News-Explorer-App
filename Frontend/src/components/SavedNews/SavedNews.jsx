@@ -2,10 +2,10 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import NewsCardList from "../NewsCardList/NewsCardList";
 // import cards from "../../utils/datosPrueba";
 
-function SavedNews({ currentUser }) {
+function SavedNews() {
   return (
     <div>
-      <SavedNewsHeader currentUser={currentUser} />
+      <SavedNewsHeader />
       <NewsCardList></NewsCardList>
     </div>
   );

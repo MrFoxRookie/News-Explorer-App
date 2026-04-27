@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { handleSignup } from "../../utils/api/singup";
 
 function SignUp({ onSignInClick, onSignUpSuccess }) {
   const [email, setEmail] = useState("");
@@ -14,18 +15,7 @@ function SignUp({ onSignInClick, onSignUpSuccess }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:1234/users/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-        username,
-      }),
-    })
-      .then((res) => res.json())
+    handleSignup(email, password, username)
       .then((data) => {
         if (!data.error) {
           onSignUpSuccess();

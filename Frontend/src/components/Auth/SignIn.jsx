@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useEffect } from "react";
+import { handleSignin } from "../../utils/api/signin";
 
 function SignIn({ onSignUpClick, closeForm }) {
   const [email, setEmail] = useState("");
@@ -11,17 +12,7 @@ function SignIn({ onSignUpClick, closeForm }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:1234/users/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
+    handleSignin(email, password)
       .then((data) => {
         if (!data.error) {
           closeForm();
@@ -29,7 +20,7 @@ function SignIn({ onSignUpClick, closeForm }) {
           setCurrentUser(data.authorizedUser);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   };
 
   return (

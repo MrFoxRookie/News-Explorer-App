@@ -6,15 +6,11 @@ import { useEffect } from "react";
 function SavedNewsHeader() {
   const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    setCurrentUser("george");
-  }, []);
-
   return (
     <div className="saved-news">
       <p className="saved-news__header">Saved articles</p>
       <h1 className="saved-news__title">
-        {currentUser}, you have {cards.length} saved articles
+        {currentUser.username}, you have {cards.length} saved articles
       </h1>
       <p className="saved-news__description">
         By keywords:{" "}

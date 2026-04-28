@@ -1,4 +1,4 @@
-import { savedNewsModel } from "../models/mysql/savedNews.js";
+import { SavedNewsModel } from "../models/mysql/savedNews.js";
 import { validateArticle } from "../schemas/savedNews.js";
 
 export class savedNewsController {
@@ -11,7 +11,7 @@ export class savedNewsController {
 
       const user_id = req.user.id;
 
-      const newArticle = await savedNewsModel.addArticle({
+      const newArticle = await SavedNewsModel.addArticle({
         input: result.data,
         user_id: user_id,
       });

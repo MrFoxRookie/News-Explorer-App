@@ -22,7 +22,6 @@ function App() {
 
     checkToken(token)
       .then((data) => {
-        console.log("hola");
         setCurrentUser(data);
       })
       .catch((err) => {

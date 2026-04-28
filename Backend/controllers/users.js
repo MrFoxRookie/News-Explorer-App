@@ -27,6 +27,8 @@ export class UserController {
         return res.status(400).json({ error: result.error.issues });
       }
 
+      console.log("hola");
+
       const authorizedUser = await UserModel.signin({ input: result.data });
 
       const token = jwt.sign(

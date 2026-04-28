@@ -4,22 +4,29 @@ import bcrypt from "bcrypt";
 
 export class SavedNewsModel {
   static async addArticle({ input, user_id }) {
+    const connection = await pool.getConnection(); //Es lo que permite que se haga una transaccion para que las 2 querys se ejecuten como una sola operacion. Si todas salen bien → COMMIT, si una falla → ROLLBACK
+
     try {
       const { description, publishedAt, source, title, url, urlToImage } =
         input;
 
-      const [result] = await pool.query(
-        `INSERT INTO articles (description, publishedAt, source, title, url, urlToImage) VALUES (?, ?, ?, ?, ?, ? )`,
+      await connection.beginTransaction(); 
+
+      const [result] = await connection.query(
+        `INSERT INTO articles
+        (description, publishedAt, source, title, url, urlToImage)
+        VALUES (?, ?, ?, ?, ?, ?)`,
         [description, publishedAt, source, title, url, urlToImage],
       );
-      console.log("query 1");
 
-      await pool.query(
-        `INSERT INTO saved_articles (user_id, article_id) VALUES (?, ?)`,
+      await connection.query(
+        `INSERT INTO saved_articles
+        (user_id, article_id)
+        VALUES (?, ?)`,
         [user_id, result.insertId],
       );
 
-      console.log("query 2");
+      await connection.commit();
 
       return {
         article_id: result.insertId,
@@ -31,7 +38,10 @@ export class SavedNewsModel {
         urlToImage,
       };
     } catch (error) {
+      await connection.rollback();
       throw new Error(error.message);
+    } finally {
+      connection.release();
     }
   }
 }

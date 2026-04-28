@@ -10,26 +10,39 @@ export class SavedNewsModel {
       const { description, publishedAt, source, title, url, urlToImage } =
         input;
 
-      await connection.beginTransaction(); 
+      let articleId;
 
-      const [result] = await connection.query(
-        `INSERT INTO articles
+      await connection.beginTransaction();
+
+      const [rows] = await connection.query(
+        `SELECT * FROM articles WHERE url = ?`,
+        [url],
+      );
+
+      if (rows.length === 0) {
+        const [result] = await connection.query(
+          `INSERT INTO articles
         (description, publishedAt, source, title, url, urlToImage)
         VALUES (?, ?, ?, ?, ?, ?)`,
-        [description, publishedAt, source, title, url, urlToImage],
-      );
+          [description, publishedAt, source, title, url, urlToImage],
+        );
+
+        articleId = result.insertId; //El id generado de la tabla como PK
+      } else {
+        articleId = rows[0].article_id;
+      }
 
       await connection.query(
         `INSERT INTO saved_articles
         (user_id, article_id)
         VALUES (?, ?)`,
-        [user_id, result.insertId],
+        [user_id, articleId],
       );
 
       await connection.commit();
 
       return {
-        article_id: result.insertId,
+        article_id: articleId,
         description,
         publishedAt,
         source,

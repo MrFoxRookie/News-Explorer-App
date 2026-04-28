@@ -17,3 +17,16 @@ Content-Type: application/json
   "password": "1234"
   
 }
+
+###Agregar articulo
+POST http://localhost:1234/saved-news
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImVtYWlsIjoiY29ycmVvM0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6IkJhbHRhemFyIiwiaWF0IjoxNzc3MzE2NDcwLCJleHAiOjE3Nzc5MjEyNzB9.exqcVFDg1KK2WzNNSECb_0GledMHWpCM56BnNhYL2jI
+
+{
+  "description": "You can still find the Asus Xbox Ally X and the MSI Claw 8 AI Plus for $999 and $1,049 respectively, but Lenovo's Legion Go S has seemingly given up the fight.",
+  "publishedAt": "2026-04-20T22:49:42Z", "source": "Vanity",
+  "title": "The Lenovo Legion Go S is RAMageddon’s latest victim", 
+  "url": "https://www.theverge.com/tech/918216/bmw-ix3-flow-edition-concept-car-2026-beijing-auto-show-e-ink-color-changing",
+  "urlToImage": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/07/lenovo-legion-go-s-image.jpg"
+}

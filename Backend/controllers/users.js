@@ -1,4 +1,4 @@
-import { UserModel } from "../models/mysql/mysql.js";
+import { UserModel } from "../models/mysql/users.js";
 
 import { validateSignup, validateSignin } from "../schemas/users.js";
 

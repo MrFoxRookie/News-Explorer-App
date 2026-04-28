@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import { usersRouter } from "./routes/users.js";
+import { savedNewsRouter } from "./routes/savedNews.js";
 import { corsMiddleware } from "./middlewares/cors.js";
 import cors from "cors"; //Cors ya funciona, pero se podria mejorar.
 import dotenv from "dotenv";
@@ -12,6 +13,8 @@ app.disable("x-powered-by"); //Le dice a Express que no envíe este header en la
 app.use(cors());
 
 app.use("/users", usersRouter);
+
+app.use("/saved-news", savedNewsRouter);
 
 const PORT = process.env.PORT ?? 1234;
 

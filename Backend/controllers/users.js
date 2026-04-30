@@ -27,8 +27,6 @@ export class UserController {
         return res.status(400).json({ error: result.error.issues });
       }
 
-      console.log("hola");
-
       const authorizedUser = await UserModel.signin({ input: result.data });
 
       const token = jwt.sign(
@@ -42,7 +40,6 @@ export class UserController {
           expiresIn: "7d",
         },
       );
-      console.log(authorizedUser);
 
       res.status(200).json({ token, authorizedUser });
       console.log("signin completado");
@@ -55,6 +52,7 @@ export class UserController {
 
   static async getCurrentUser(req, res) {
     try {
+      console.log(req);
       const user = await UserModel.getById(req.user.id);
 
       res.json(user);

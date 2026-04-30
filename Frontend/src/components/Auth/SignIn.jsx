@@ -16,7 +16,7 @@ function SignIn({ onSignUpClick, closeForm }) {
       .then((data) => {
         if (!data.error) {
           closeForm();
-          localStorage.setItem("token", data.token);
+          localStorage.setItem("token", data.token); //Asigna como se llamara el token.
           setCurrentUser(data.authorizedUser);
         }
       })

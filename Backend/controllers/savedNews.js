@@ -16,7 +16,6 @@ export class savedNewsController {
         user_id: user_id,
       });
       res.status(201).json(newArticle);
-      console.log(newArticle);
     } catch (error) {
       throw new Error(error.message);
     }

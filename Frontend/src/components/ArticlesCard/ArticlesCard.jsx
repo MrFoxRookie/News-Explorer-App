@@ -1,5 +1,7 @@
+import { handleAddArticle } from "../../utils/api/addArticle";
+
 function ArticlesCard({ article, currentUser }) {
-  const { source, title, publishedAt, description, urlToImage } = article;
+  const { description, publishedAt, source, title, url, urlToImage } = article;
 
   const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
     month: "long",
@@ -7,11 +9,30 @@ function ArticlesCard({ article, currentUser }) {
     year: "numeric",
   });
 
+  const handleSubmit = () => {
+    handleAddArticle({
+      description,
+      publishedAt,
+      source: source.name,
+      title,
+      url,
+      urlToImage,
+    })
+      .then((data) => {
+        if (!data.error) {
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="articles-card">
       <div className="articles-card__image-container">
         <img src={urlToImage} alt={title} className="articles-card__image" />
         <button
+          onClick={handleSubmit}
           className={`articles-card__save-button ${
             currentUser ? "articles-card__save-button_active" : ""
           }`}

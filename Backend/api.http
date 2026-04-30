@@ -30,3 +30,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImVtYWlsI
   "url": "https://www.theverge.com/tech/918216/bmw-ix3-flow-edition-concept-car-2026-beijing-auto-show-e-ink-color-changing",
   "urlToImage": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/07/lenovo-legion-go-s-image.jpg"
 }
+
+###Obtener articulos 
+GET http://localhost:1234/saved-news
+ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzAsImVtYWlsIjoiemFoaWRAZ21haWwuY29tIiwidXNlcm5hbWUiOiJaYWhpZCIsImlhdCI6MTc3NzUwOTgzMywiZXhwIjoxNzc4MTE0NjMzfQ.ZS45-8jPlBsYVY9yYGfKG-YbjY_tPuGuN_311LKlKp0

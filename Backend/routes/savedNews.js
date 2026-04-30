@@ -6,4 +6,6 @@ export const savedNewsRouter = Router();
 
 savedNewsRouter.post("/", auth, savedNewsController.addArticle);
 
+savedNewsRouter.get("/", auth, savedNewsController.getArticles);
+
 // savedNewsRouter.delete("/:id", auth, savedNewsController.deleteArticle);

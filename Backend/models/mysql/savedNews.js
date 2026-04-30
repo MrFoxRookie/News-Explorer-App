@@ -57,4 +57,21 @@ export class SavedNewsModel {
       connection.release();
     }
   }
+
+  static async getArticles(user_id) {
+    try {
+      const [result] = await pool.query(
+        `SELECT articles.*
+  FROM articles 
+  JOIN saved_articles 
+  ON articles.article_id = saved_articles.article_id
+  WHERE saved_articles.user_id = ?;`,
+        [user_id],
+      );
+
+      return result;
+    } catch (err) {
+      throw new Error(error.message);
+    }
+  }
 }

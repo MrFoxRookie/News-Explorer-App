@@ -20,4 +20,16 @@ export class savedNewsController {
       throw new Error(error.message);
     }
   }
+
+  static async getArticles(req, res) {
+    try {
+      const user_id = req.user.id;
+
+      const articlesInformation = await SavedNewsModel.getArticles(user_id);
+
+      res.status(201).json(articlesInformation);
+    } catch (err) {
+      throw new Error(error.message);
+    }
+  }
 }

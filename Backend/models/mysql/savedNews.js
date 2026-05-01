@@ -71,7 +71,40 @@ export class SavedNewsModel {
 
       return result;
     } catch (err) {
-      throw new Error(error.message);
+      throw new Error(err.message);
+    }
+  }
+
+  static async deleteArticles({ user_id, article_id }) {
+    const connection = await pool.getConnection();
+
+    try {
+      await connection.beginTransaction();
+
+      const [result] = await connection.query(
+        `DELETE FROM saved_articles
+WHERE user_id = ? AND article_id = ?`,
+        [user_id, article_id],
+      );
+
+      const [rows] = await connection.query(
+        "SELECT 1 FROM saved_articles WHERE article_id = ? LIMIT 1",
+        [article_id],
+      );
+
+      if (rows.length === 0) {
+        await connection.query("DELETE FROM articles WHERE article_id = ?", [
+          article_id,
+        ]);
+      }
+
+      await connection.commit();
+      return { message: "Artículo eliminado correctamente" };
+    } catch (err) {
+      await connection.rollback();
+      res.status(500).json({ error: err.message });
+    } finally {
+      connection.release();
     }
   }
 }

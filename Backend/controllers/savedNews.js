@@ -32,4 +32,20 @@ export class savedNewsController {
       throw new Error(error.message);
     }
   }
+
+  static async deleteArticles(req, res) {
+    try {
+      const user_id = req.user.id;
+      const { id } = req.params; //este es igual al /:id en el endpoint anterior
+
+      const deletedArticle = await SavedNewsModel.deleteArticles({
+        user_id,
+        article_id: id,
+      });
+
+      res.status(200).json(deletedArticle);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
 }

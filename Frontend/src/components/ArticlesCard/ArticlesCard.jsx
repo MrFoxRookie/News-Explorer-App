@@ -2,17 +2,30 @@ import { useState, useEffect } from "react";
 
 import { handleAddArticle } from "../../utils/api/addArticle";
 import { handleGetSavedArticles } from "../../utils/api/getArticles";
+import { handleDeleteArticles } from "../../utils/api/deleteArticles";
 
 function ArticlesCard({ article }) {
   const { description, publishedAt, source, title, url, urlToImage } = article;
 
   const [isSaved, setIsSaved] = useState(false);
+  const [savedArticle, setSavedArticle] = useState(null);
 
   useEffect(() => {
-    handleGetSavedArticles().then((articles) => {
-      const saved = articles.some((article) => article.url === url);
-      setIsSaved(saved);
-    });
+    handleGetSavedArticles()
+      .then((articles) => {
+        const found = articles.find((a) => a.url === url);
+
+        if (found) {
+          setIsSaved(true);
+          setSavedArticle(found.article_id);
+        } else {
+          setIsSaved(false);
+          setSavedArticle(null);
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, [url]);
 
   const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
@@ -22,20 +35,33 @@ function ArticlesCard({ article }) {
   });
 
   const handleSubmit = () => {
-    handleAddArticle({
-      description,
-      publishedAt,
-      source: source.name,
-      title,
-      url,
-      urlToImage,
-    })
-      .then((data) => {
-        setIsSaved(true);
+    if (!isSaved) {
+      handleAddArticle({
+        description,
+        publishedAt,
+        source: source.name,
+        title,
+        url,
+        urlToImage,
       })
-      .catch((err) => {
-        console.log(err.message);
-      });
+        .then((data) => {
+          setSavedArticle(data.article_id);
+          setIsSaved(true);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } else {
+      if (!savedArticle) return;
+      handleDeleteArticles(savedArticle)
+        .then((data) => {
+          setIsSaved(false);
+          setSavedArticle(null);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
   };
 
   return (

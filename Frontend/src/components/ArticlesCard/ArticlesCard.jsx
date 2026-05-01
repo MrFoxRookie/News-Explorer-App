@@ -1,7 +1,19 @@
-import { handleAddArticle } from "../../utils/api/addArticle";
+import { useState, useEffect } from "react";
 
-function ArticlesCard({ article, currentUser }) {
+import { handleAddArticle } from "../../utils/api/addArticle";
+import { handleGetSavedArticles } from "../../utils/api/getArticles";
+
+function ArticlesCard({ article }) {
   const { description, publishedAt, source, title, url, urlToImage } = article;
+
+  const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    handleGetSavedArticles().then((articles) => {
+      const saved = articles.some((article) => article.url === url);
+      setIsSaved(saved);
+    });
+  }, [url]);
 
   const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
     month: "long",
@@ -19,8 +31,7 @@ function ArticlesCard({ article, currentUser }) {
       urlToImage,
     })
       .then((data) => {
-        if (!data.error) {
-        }
+        setIsSaved(true);
       })
       .catch((err) => {
         console.log(err.message);
@@ -34,7 +45,7 @@ function ArticlesCard({ article, currentUser }) {
         <button
           onClick={handleSubmit}
           className={`articles-card__save-button ${
-            currentUser ? "articles-card__save-button_active" : ""
+            isSaved ? "articles-card__save-button_active" : ""
           }`}
         ></button>
       </div>

@@ -10,7 +10,6 @@ function SearchResults({
   hasSearched,
   visibleCount,
   setVisibleCount,
-  currentUser,
 }) {
   const noResults =
     hasSearched && !isLoading && articles.length === 0 && !error;
@@ -50,11 +49,7 @@ function SearchResults({
           <h2 className="results__articles-title">Search results</h2>
           <div className="results__list">
             {articles.slice(0, visibleCount).map((article) => (
-              <ArticlesCard
-                key={article.url}
-                article={article}
-                currentUser={currentUser}
-              />
+              <ArticlesCard key={article.url} article={article} />
             ))}
           </div>
           {visibleCount < articles.length && (

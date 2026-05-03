@@ -7,10 +7,19 @@ export class SavedNewsModel {
     const connection = await pool.getConnection(); //Es lo que permite que se haga una transaccion para que las 2 querys se ejecuten como una sola operacion. Si todas salen bien → COMMIT, si una falla → ROLLBACK
 
     try {
-      const { description, publishedAt, source, title, url, urlToImage } =
-        input;
+      const {
+        description,
+        publishedAt,
+        source,
+        title,
+        url,
+        urlToImage,
+        keyword,
+      } = input;
 
       let articleId;
+
+      console.log("keyowrd", keyword);
 
       await connection.beginTransaction();
 
@@ -34,9 +43,9 @@ export class SavedNewsModel {
 
       await connection.query(
         `INSERT INTO saved_articles
-        (user_id, article_id)
-        VALUES (?, ?)`,
-        [user_id, articleId],
+        (user_id, article_id, keyword)
+        VALUES (?, ?, ?)`,
+        [user_id, articleId, keyword],
       );
 
       await connection.commit();
@@ -49,6 +58,7 @@ export class SavedNewsModel {
         title,
         url,
         urlToImage,
+        keyword,
       };
     } catch (error) {
       await connection.rollback();
@@ -61,13 +71,15 @@ export class SavedNewsModel {
   static async getArticles(user_id) {
     try {
       const [result] = await pool.query(
-        `SELECT articles.*
-  FROM articles 
-  JOIN saved_articles 
-  ON articles.article_id = saved_articles.article_id
-  WHERE saved_articles.user_id = ?;`,
+        `SELECT articles.*, saved_articles.keyword
+       FROM articles 
+       JOIN saved_articles 
+       ON articles.article_id = saved_articles.article_id
+       WHERE saved_articles.user_id = ?;`,
         [user_id],
       );
+
+      console.log("aqui", result);
 
       return result;
     } catch (err) {

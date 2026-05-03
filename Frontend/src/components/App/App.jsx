@@ -65,7 +65,12 @@ function App() {
       .getNews(keyword)
       .then((data) => {
         console.log(data);
-        setArticles(data.articles);
+        const articlesKeyword = data.articles.map((article) => ({
+          ...article,
+          keyword,
+        }));
+
+        setArticles(articlesKeyword);
       })
       .catch(() => {
         setError(

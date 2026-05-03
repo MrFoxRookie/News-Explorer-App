@@ -5,7 +5,8 @@ import { handleGetSavedArticles } from "../../utils/api/getArticles";
 import { handleDeleteArticles } from "../../utils/api/deleteArticles";
 
 function ArticlesCard({ article }) {
-  const { description, publishedAt, source, title, url, urlToImage } = article;
+  const { description, publishedAt, source, title, url, urlToImage, keyword } =
+    article;
 
   const [isSaved, setIsSaved] = useState(false);
   const [savedArticle, setSavedArticle] = useState(null);
@@ -43,6 +44,7 @@ function ArticlesCard({ article }) {
         title,
         url,
         urlToImage,
+        keyword,
       })
         .then((data) => {
           setSavedArticle(data.article_id);

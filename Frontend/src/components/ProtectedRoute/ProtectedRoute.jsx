@@ -1,7 +1,9 @@
 import { Navigate } from "react-router-dom";
 
-function ProtectedRoute({ currentUser, children }) {
-  // console.log("ProtectedRoute ejecutándose");
+function ProtectedRoute({ currentUser, isAuthLoading, children }) {
+  if (isAuthLoading) {
+    return;
+  }
 
   if (!currentUser) {
     return <Navigate to="/" replace />;

@@ -11,7 +11,6 @@ function Main({
   hasSearched,
   visibleCount,
   setVisibleCount,
-  currentUser,
 }) {
   return (
     <div className="main">
@@ -31,7 +30,6 @@ function Main({
           hasSearched={hasSearched}
           visibleCount={visibleCount}
           setVisibleCount={setVisibleCount}
-          currentUser={currentUser}
         ></SearchResults>
       )}
       <About />

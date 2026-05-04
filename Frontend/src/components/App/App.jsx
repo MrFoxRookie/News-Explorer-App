@@ -14,6 +14,7 @@ import { checkToken } from "../../utils/api/auth.js";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -28,6 +29,9 @@ function App() {
         console.log("ERROR:", err);
         localStorage.removeItem("token");
         setCurrentUser(null);
+      })
+      .finally(() => {
+        setIsAuthLoading(false);
       });
   }, []);
 
@@ -105,14 +109,16 @@ function App() {
                   hasSearched={hasSearched}
                   visibleCount={visibleCount}
                   setVisibleCount={setVisibleCount}
-                  currentUser={currentUser}
                 />
               }
             />
             <Route
               path="/saved-news"
               element={
-                <ProtectedRoute currentUser={currentUser}>
+                <ProtectedRoute
+                  currentUser={currentUser}
+                  isAuthLoading={isAuthLoading}
+                >
                   <SavedNews />{" "}
                 </ProtectedRoute>
               }

@@ -5,8 +5,6 @@ import { useEffect } from "react";
 function SavedNewsHeader({ savedArticles }) {
   const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
 
-  console.log(savedArticles);
-
   return (
     <div className="saved-news">
       <p className="saved-news__header">Saved articles</p>

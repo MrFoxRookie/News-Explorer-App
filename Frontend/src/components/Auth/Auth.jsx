@@ -22,10 +22,6 @@ function Auth({ isOpen, closeForm }) {
         <SignUp
           onSignInClick={() => setMode("signin")}
           onSignUpSuccess={() => setMode("success")}
-          // onSignUpSubmit={(e) => {
-          //   e.preventDefault();
-          //   setMode("success");
-          // }}
         />
       )}
 

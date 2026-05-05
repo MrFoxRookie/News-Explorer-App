@@ -12,7 +12,7 @@ export class savedNewsController {
       const user_id = req.user.id;
 
       const newArticle = await SavedNewsModel.addArticle({
-        input: result.data,
+        input: req.body,
         user_id: user_id,
       });
       res.status(201).json(newArticle);

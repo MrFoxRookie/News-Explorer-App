@@ -4,30 +4,6 @@ import { useEffect, useState } from "react";
 import { handleDeleteArticles } from "../../utils/api/deleteArticles";
 
 function NewsCardList({ savedArticles, onDelete }) {
-  // const [savedArticles, setSavedArticles] = useState(null);
-
-  // useEffect(() => {
-  //   handleGetSavedArticles()
-  //     .then((articles) => {
-  //       setSavedArticles(articles);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error al obtener artículos:", err);
-  //     });
-  // }, []);
-
-  // function handleDelete(article_id) {
-  //   handleDeleteArticles(article_id)
-  //     .then(() => {
-  //       setSavedArticles((prev) =>
-  //         prev.filter((a) => a.article_id !== article_id),
-  //       );
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // }
-
   return (
     <section className="card-list">
       <div className="card-list__container">

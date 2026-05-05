@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 function SavedNewsHeader({ savedArticles }) {
   const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
+  const count = savedArticles.length;
 
   return (
     <div className="saved-news">
@@ -14,9 +15,9 @@ function SavedNewsHeader({ savedArticles }) {
       <p className="saved-news__description">
         By keywords:{" "}
         <strong>
-          {" "}
-          {savedArticles[0]?.keyword}, {savedArticles[1]?.keyword}, and{" "}
-          {savedArticles.length - 2} other{" "}
+          {savedArticles[0]?.keyword || ""}
+          {savedArticles[1] ? `, ${savedArticles[1].keyword}` : ""}
+          {count > 2 ? `, and ${count - 2} other` : ""}
         </strong>
       </p>
     </div>

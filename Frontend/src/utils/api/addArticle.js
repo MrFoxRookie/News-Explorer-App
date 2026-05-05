@@ -15,6 +15,7 @@ export function handleAddArticle({
   title,
   url,
   urlToImage,
+  keyword,
 }) {
   const token = localStorage.getItem("token");
 
@@ -31,6 +32,7 @@ export function handleAddArticle({
       title,
       url,
       urlToImage,
+      keyword,
     }),
   }).then(handleResponse);
 }

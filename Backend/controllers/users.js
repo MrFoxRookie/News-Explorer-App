@@ -52,7 +52,6 @@ export class UserController {
 
   static async getCurrentUser(req, res) {
     try {
-      console.log(req);
       const user = await UserModel.getById(req.user.id);
 
       res.json(user);

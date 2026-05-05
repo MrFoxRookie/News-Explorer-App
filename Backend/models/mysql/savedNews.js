@@ -19,8 +19,6 @@ export class SavedNewsModel {
 
       let articleId;
 
-      console.log("keyowrd", keyword);
-
       await connection.beginTransaction();
 
       const [rows] = await connection.query(
@@ -78,8 +76,6 @@ export class SavedNewsModel {
        WHERE saved_articles.user_id = ?;`,
         [user_id],
       );
-
-      console.log("aqui", result);
 
       return result;
     } catch (err) {

@@ -16,8 +16,8 @@ export class UserController {
 
       res.status(201).json(newUser);
     } catch (err) {
-      console.log("ERROR SIGNUP:", err);
-      return res.status(400).json({ error: err.message });
+      console.log("MYSQL ERROR:", err);
+      throw err;
     }
   }
 

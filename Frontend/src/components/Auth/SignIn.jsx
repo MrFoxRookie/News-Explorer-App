@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { useEffect } from "react";
 import { handleSignin } from "../../utils/api/signin";
 
 function SignIn({ onSignUpClick, closeForm }) {

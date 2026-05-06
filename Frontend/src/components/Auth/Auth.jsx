@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import SignIn from "./Signin";
-import SignUp from "./Signup";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 import SuccessMessage from "./SuccessMessage";
 
 function Auth({ isOpen, closeForm }) {

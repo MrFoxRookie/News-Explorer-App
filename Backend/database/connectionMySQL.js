@@ -1,11 +1,5 @@
-import { createPool } from "mysql2/promise";
+import mysql from "mysql2/promise";
+import dotenv from "dotenv";
+dotenv.config();
 
-export const pool = createPool({
-  host: "localhost",
-  port: 3306,
-  database: "news_explorer_app",
-  user: "root",
-  password: "",
-});
-
-//Aqui se crea el pull de conexiones.
+export const pool = mysql.createPool(process.env.DATABASE_URL);

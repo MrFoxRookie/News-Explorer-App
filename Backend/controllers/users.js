@@ -15,9 +15,8 @@ export class UserController {
       const newUser = await UserModel.signup({ input: result.data });
 
       res.status(201).json(newUser);
-    } catch (err) {
-      console.log("MYSQL ERROR:", err);
-      throw err;
+    } catch (error) {
+      res.status(400).json({ error: error.message });
     }
   }
 

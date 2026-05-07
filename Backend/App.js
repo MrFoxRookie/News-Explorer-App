@@ -2,7 +2,6 @@ import express, { json } from "express";
 import { usersRouter } from "./routes/users.js";
 import { savedNewsRouter } from "./routes/savedNews.js";
 import { corsMiddleware } from "./middlewares/cors.js";
-import cors from "cors"; //Cors ya funciona, pero se podria mejorar.
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -10,7 +9,8 @@ const app = express();
 app.use(json()); //json es un middleware de Express. Sirve para leer datos JSON que vienen en el body de una petición
 app.disable("x-powered-by"); //Le dice a Express que no envíe este header en las respuestas HTTP, dando pistas a posibles atacantes.
 
-app.use(cors());
+app.use(corsMiddleware());
+app.options("*", corsMiddleware());
 
 app.use("/users", usersRouter);
 

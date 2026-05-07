@@ -10,7 +10,6 @@ app.use(json()); //json es un middleware de Express. Sirve para leer datos JSON 
 app.disable("x-powered-by"); //Le dice a Express que no envíe este header en las respuestas HTTP, dando pistas a posibles atacantes.
 
 app.use(corsMiddleware());
-app.options("*", corsMiddleware());
 
 app.use("/users", usersRouter);
 

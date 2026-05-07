@@ -51,6 +51,7 @@ function ArticlesCard({ article }) {
           setIsSaved(true);
         })
         .catch((err) => {
+          console.log("que pedo");
           console.log(err.message);
         });
     } else {

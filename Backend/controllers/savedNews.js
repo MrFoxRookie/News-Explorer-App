@@ -11,8 +11,18 @@ export class savedNewsController {
 
       const user_id = req.user.id;
 
+      const { publishedAt, ...rest } = req.body;
+
+      const formattedDateSQL = new Date(publishedAt)
+        .toISOString()
+        .slice(0, 19)
+        .replace("T", " ");
+
       const newArticle = await SavedNewsModel.addArticle({
-        input: req.body,
+        input: {
+          ...rest,
+          publishedAt: formattedDateSQL,
+        },
         user_id: user_id,
       });
       res.status(201).json(newArticle);

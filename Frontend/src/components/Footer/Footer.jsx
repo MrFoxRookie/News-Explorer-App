@@ -1,3 +1,6 @@
+import githubIcon from "../../images/footer__github-icon.svg";
+import FacebookIcon from "../../images/footer__facebook-icon.svg";
+
 function Footer() {
   return (
     <footer className="footer">
@@ -5,16 +8,24 @@ function Footer() {
       <div className="footer__clickables">
         <p>Home</p>
         <p>Practicum by Yandex</p>
-        <a href="https://github.com/MrFoxRookie">
+        <a
+          href="https://github.com/MrFoxRookie"
+          target="_blank"
+          className="footer__link"
+        >
           <img
-            src="src/images/footer__facebook-icon.svg"
+            src={githubIcon}
             alt="Icono de Github"
             className="footer__logos"
           />
         </a>
-        <a href="https://www.facebook.com/zahid.tejedaamaro/?locale=es_LA">
+        <a
+          href="https://www.facebook.com/zahid.tejedaamaro/?locale=es_LA"
+          target="_blank"
+          className="footer__link"
+        >
           <img
-            src="src/images/footer__github-icon.svg"
+            src={FacebookIcon}
             alt="Icono de Facebook"
             className="footer__logos"
           />

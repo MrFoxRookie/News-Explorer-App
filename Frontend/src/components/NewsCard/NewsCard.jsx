@@ -10,7 +10,12 @@ function NewsCard({ article, onDelete }) {
     keyword,
   } = article;
 
-  const date = new Date(publishedAt).toLocaleDateString("es-Mx");
+  const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
   return (
     <div className="news-card">
       {" "}
@@ -24,7 +29,7 @@ function NewsCard({ article, onDelete }) {
       </div>{" "}
       <div className="news-card__text-container">
         {" "}
-        <p className="news-card__date">{date}</p>{" "}
+        <p className="news-card__date">{formattedDate}</p>{" "}
         <h2 className="news-card__title">{title}</h2>{" "}
         <p className="news-card__text">{description}</p>{" "}
         <p className="news-card__source">{source.toUpperCase()}</p>{" "}

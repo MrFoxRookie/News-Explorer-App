@@ -9,7 +9,8 @@
 import cors from "cors";
 
 const ACCEPTED_ORIGINS = [
-  "http://localhost:1234, https://news-explorer-app-three.vercel.app/",
+  "http://localhost:1234",
+  "https://news-explorer-app-three.vercel.app/",
 ];
 
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) =>

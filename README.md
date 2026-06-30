@@ -1,7 +1,22 @@
-News Explorer Proyecto full-stack desarrollado como proyecto final del bootcamp de Desarrollo Web de TripleTen. Construido con React y Node.js, integra una API de búsqueda de noticias que presenta los resultados mediante una interfaz basada en tarjetas dinámicas. Además, cuenta con un sistema de guardado utilizando una base de datos MongoDB, permitiendo a los usuarios gestionar y personalizar su lista de noticias de interés tras realizar una autorización de usuario. Las tecnologías utilizadas han sido: HTML, CSS, JS, Vite, React Node.js, Express y MongoDB.
+**News Explorer**
 
-Descripción Proyecto full-stack desarrollado como proyecto final del bootcamp de Desarrollo Web de TripleTen. Construido con React y Node.js, integra una API de búsqueda de noticias que presenta los resultados mediante una interfaz basada en tarjetas dinámicas. Además, cuenta con un sistema de guardado utilizando una base de datos MongoDB, permitiendo a los usuarios gestionar y personalizar su lista de noticias de interés tras realizar una autorización de usuario.
+**Descripción**
 
-Funcionalidades Frontend: Desarrollado con React para una interfaz moderna y dinámica. Backend: Implementado con Node.js y Express para la gestión de lógica y peticiones. API Integration: Consumo de API de noticias para la obtención de datos en tiempo real. Authentication: Sistema de registro e inicio de sesión con persistencia de sesión. Database: Uso de MongoDB para almacenamiento y gestión de datos del usuario. Features: Guardado y gestión de noticias favoritas con renderizado dinámico.
+Este proyecto full-stack fue desarrollado como proyecto final del bootcamp de Desarrollo Web de TripleTen. La aplicación fue construida utilizando HTML, CSS, JavaScript, React y Vite en el frontend, y Node.js, Express y MongoDB en el backend.
 
-Aprendizajes clave Consolidé los conocimientos adquiridos durante el programa al desarrollar una aplicación full-stack funcional, integrando frontend y backend con diversas tecnologías. Apliqué buenas prácticas como código limpio y la metodología BEM para una mejor organización y mantenibilidad. Asimismo, implementé un servicio de noticias que permite a los usuarios acceder a información relevante y personalizar sus listas según sus intereses.
+Integra una API de búsqueda de noticias que permite consultar información en tiempo real y mostrar los resultados mediante una interfaz basada en tarjetas dinámicas. Además, cuenta con un sistema de autenticación de usuarios y almacenamiento de noticias favoritas en MongoDB, permitiendo a cada usuario gestionar y personalizar su propia colección de artículos de interés.
+
+**Funcionalidades**
+
+* Autenticación de usuarios mediante registro e inicio de sesión con persistencia de sesión.
+* Búsqueda de noticias en tiempo real a través de una API externa.
+* Visualización de resultados mediante tarjetas dinámicas e interactivas.
+* Guardado y administración de noticias favoritas asociadas a cada usuario.
+* Gestión de datos de usuario y noticias utilizando MongoDB.
+* Integración completa de frontend y backend mediante React, Node.js y Express.
+
+**Aprendizajes clave**
+
+Este proyecto me permitió consolidar los conocimientos adquiridos durante mi formación en desarrollo web full-stack, integrando de manera efectiva frontend y backend en una sola aplicación funcional.
+
+Además, reforcé mis habilidades en el desarrollo de interfaces con React, la creación de APIs con Node.js y Express, y la gestión de datos mediante MongoDB. También apliqué buenas prácticas de desarrollo, incluyendo código limpio y la metodología BEM, para mantener una estructura organizada, escalable y fácil de mantener.

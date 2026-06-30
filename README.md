@@ -19,4 +19,4 @@ Integra una API de búsqueda de noticias que permite consultar información en t
 
 Este proyecto me permitió consolidar los conocimientos adquiridos durante mi formación en desarrollo web full-stack, integrando de manera efectiva frontend y backend en una sola aplicación funcional.
 
-Además, reforcé mis habilidades en el desarrollo de interfaces con React, la creación de APIs con Node.js y Express, y la gestión de datos mediante MongoDB. También apliqué buenas prácticas de desarrollo, incluyendo código limpio y la metodología BEM, para mantener una estructura organizada, escalable y fácil de mantener.
+Además, reforcé mis habilidades en el desarrollo de interfaces con React, la creación de APIs con Node.js y Express, y la gestión de datos mediante MySQL. También apliqué buenas prácticas de desarrollo, incluyendo código limpio y la metodología BEM, para mantener una estructura organizada, escalable y fácil de mantener.
